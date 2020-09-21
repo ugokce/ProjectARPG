@@ -28,12 +28,7 @@ public class TPSCameraController : MonoBehaviour
         Vector3 lookDir = target.position - transform.position;
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookDir.normalized), lookAtLerp);
-
-
         transform.position = newPos;
-
- 
-        //transform.LookAt( target);
        
         changeDistance();
     }
