@@ -3570,7 +3570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 10
-  rotateSpeed: 2.08
+  rotateSpeed: 0.8
   jumpSpeed: 0
   playerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &6957953439141391205
