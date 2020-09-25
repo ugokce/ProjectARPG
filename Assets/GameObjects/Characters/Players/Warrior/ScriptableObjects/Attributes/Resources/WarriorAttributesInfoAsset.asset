@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ced43841605af945aeeed0e0319fef1, type: 3}
+  m_Name: WarriorAttributesInfoAsset
+  m_EditorClassIdentifier: 
+  targetType: 20
+  entityType: 10
+  health: 100
+  moveSpeed: 10
+  attackSpeed: 1
+  gravity: -9.81
+  armor: 0
+  damageInfo:
+    damageType: 0
+    regularDamage:
+      value: 1
+    fireDamage:
+      value: 1
+    coldDamage:
+      value: 1
+    poisonDamage:
+      value: 1
+    criticalChance: 0
+    armorPiece:
+      value: 1
+  rotateSpeed: 0.8
+  jumpSpeed: 0
