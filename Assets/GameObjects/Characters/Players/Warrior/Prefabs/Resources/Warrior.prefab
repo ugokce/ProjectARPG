@@ -3491,14 +3491,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4068372295243854220}
   - component: {fileID: 4068372295253106624}
-  - component: {fileID: 7796071543245542965}
-  - component: {fileID: 2524431316249851368}
-  - component: {fileID: 6957953439141391205}
   - component: {fileID: 646240194}
+  - component: {fileID: 7981608970546862843}
+  - component: {fileID: 2221696821882548986}
+  - component: {fileID: 5088082942206171600}
   - component: {fileID: 646240191}
   - component: {fileID: 1945846334}
   m_Layer: 9
-  m_Name: WariorHumanoid
+  m_Name: Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3545,56 +3545,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7796071543245542965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068372295243754988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc1db6ec6115864bb08c29674980790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2524431316249851368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068372295243754988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598541df7b717a24aa2272dd7c182edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runSpeed: 10
-  rotateSpeed: 0.8
-  jumpSpeed: 0
-  playerVelocity: {x: 0, y: 0, z: 0}
---- !u!114 &6957953439141391205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068372295243754988}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e733486333c94429879c4a655b2391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bottomChecker: {fileID: 0}
-  frontChecker: {fileID: 951145550}
-  headChecker: {fileID: 0}
-  middleHelper: {fileID: 1209144046}
-  frontState: 1
-  bottomState: 1
-  upState: 1
-  raycastLength: 5
-  surfaceDistance: 0.5
-  positionLerping: 0.2
 --- !u!143 &646240194
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3613,6 +3563,46 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.05, z: 0}
+--- !u!114 &7981608970546862843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068372295243754988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9666d60c7d2fa134e81357dc3f9b6d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stats: {fileID: 0}
+  playerVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &2221696821882548986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068372295243754988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af15f23f29067bb46a07622220dc6f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributesInfoAsset: {fileID: 11400000, guid: 19be193e0bdf64f4fa60689b4d6332a8,
+    type: 2}
+--- !u!114 &5088082942206171600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068372295243754988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a620d86c0f6b8d4181770a9f6cbbc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &646240191
 MonoBehaviour:
   m_ObjectHideFlags: 0
