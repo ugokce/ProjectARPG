@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void ApplyDamage(float damage, DamageType damageType);
+    bool IsDamageable { get; }
+    void ApplyDamage(IList<AppliedDamageInfo> appliedDamageInfos, DamageType damageType, GameObject damageSource = null);
+    void AddStatus(DamageStatusType damageStatusType);
+    void RemoveStatus(DamageStatusType damageStatusType);
 }
