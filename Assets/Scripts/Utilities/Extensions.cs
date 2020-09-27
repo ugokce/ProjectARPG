@@ -15,4 +15,31 @@ public static class Extensions
 
         return scriptableObject ? scriptableObject : null;
     }
+
+    public static bool CheckChance(this float chance)
+    {
+        return Random.Range(0f, 99f) < chance * 100f;
+    }
+
+    public static void DoForAll<T>(this IList<T> list, System.Action<T, int> action)
+    {
+        int count = list.Count;
+
+        for (int n = 0; n < count; n++)
+        {
+            T item = list[n];
+            action(item, n);
+        }
+    }
+
+    public static void DoForAll<T>(this IList<T> list, System.Action<T> action)
+    {
+        int count = list.Count;
+
+        for (int n = 0; n < count; n++)
+        {
+            T item = list[n];
+            action(item);
+        }
+    }
 }
