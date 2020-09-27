@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Character : Entity
 {
-    public Stats _Stats;
+
 }
