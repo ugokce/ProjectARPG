@@ -20,57 +20,81 @@ public enum EntityType
 
 public enum DamageType
 {
-    Physical = 0,
-    Fire = 10,
-    Ice = 20,
-    Poison = 30
+    FirstImpact = 0
 }
 
-public class AttributesInfoAsset : ScriptableObject
+public enum DamageStatusType
+{
+    None = 0
+}
+
+public class AttributesInfoAsset : ScriptableObject, IAttributesInfoAsset, ISerializationCallbackReceiver
 {
     [Header("Base Attributes")]
     public TargetType targetType = TargetType.None;
-    public EntityType entityType = EntityType.None;
-    [Space]
-    public float health = 100f;
-    [Range(0, 100)]
-    public float moveSpeed = 1f;
-    [Range(0, 100)]
-    public float attackSpeed = 1f;
-    public float gravity = -9.81f;
-    public float armor = 0f;
 
-    #region DamageInfos
+    [SerializeField]
+    [Range(MIN_HEALTH_ATTRIBUTE_VALUE, MAX_HEALTH_ATTRIBUTE_VALUE)]
+    float health = 100f;
+    [SerializeField]
+    [Range(MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE)]
+    float attackSpeed = MIN_ATTRIBUTE_VALUE;
+    [SerializeField]
+    [Range(MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE)]
+    int moveSpeed = MIN_ATTRIBUTE_VALUE;
+    [SerializeField]
+    [Range(MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE)]
+    int regularDamage = MIN_ATTRIBUTE_VALUE;
+    [SerializeField]
+    [Range(MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE)]
+    int armor = MIN_ATTRIBUTE_VALUE;
+    [SerializeField]
+    [Range(MIN_GRAVITY_ATTRIBUTE_VALUE, MAX_GRAVITY_ATTRIBUTE_VALUE)]
+    float gravity = -9.81f;
 
-    public DamageInfo damageInfo = new DamageInfo();
+    public DamageInfo contactDamageInfo;
+
+    public RangedIntValue MoveSpeed { get; private set; }
+    public RangedIntValue RegularDamage { get; private set; }
+    public RangedIntValue Armor { get; private set; }
+    public RangedFloatValue Health { get; private set; }
+    public RangedFloatValue AttackSpeed { get; private set; }
+    public RangedFloatValue Gravity { get; private set; }
+
+    public virtual void OnBeforeSerialize()
+    {
+        // Leave it empty!
+    }
+
+    public virtual void OnAfterDeserialize()
+    {
+        Health = new RangedFloatValue(health, MIN_HEALTH_ATTRIBUTE_VALUE, MAX_HEALTH_ATTRIBUTE_VALUE);
+        AttackSpeed = new RangedFloatValue(attackSpeed, MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE);
+        MoveSpeed = new RangedIntValue(moveSpeed, MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE);
+        RegularDamage = new RangedIntValue(regularDamage, MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE);
+        Armor = new RangedIntValue(armor, MIN_ATTRIBUTE_VALUE, MAX_ATTRIBUTE_VALUE);
+        Gravity = new RangedFloatValue(gravity, MIN_GRAVITY_ATTRIBUTE_VALUE, MAX_GRAVITY_ATTRIBUTE_VALUE);
+    }
+
+    #region IAttributes
+
+    int IAttributesInfoAsset.MinAttributeValue => MIN_ATTRIBUTE_VALUE;
+    int IAttributesInfoAsset.MaxAttributeValue => MAX_ATTRIBUTE_VALUE;
+
+    public EntityType EntityType { get; protected set; }
 
     #endregion
-}
 
-[System.Serializable]
-public class DamageInfo
-{
-    public DamageType damageType = DamageType.Physical;
+    #region Const Values Range
 
-    public Damage regularDamage = new Damage();
-    public ElemantalistDamage fireDamage = new ElemantalistDamage();
-    public ElemantalistDamage coldDamage = new ElemantalistDamage();
-    public ElemantalistDamage poisonDamage = new ElemantalistDamage();
+    public const int MIN_ATTRIBUTE_VALUE = 1;
+    public const int MAX_ATTRIBUTE_VALUE = 10;
 
-    [Range(0, 1)]
-    public float criticalChance = 0f;
-    public Damage armorPiece = new Damage();
-}
+    public const float MIN_HEALTH_ATTRIBUTE_VALUE = 1;
+    public const float MAX_HEALTH_ATTRIBUTE_VALUE = 10000;
 
-[System.Serializable]
-public class Damage
-{
-    [Range(0, 100)]
-    public float value = 1f;
-}
+    public const float MIN_GRAVITY_ATTRIBUTE_VALUE = -100;
+    public const float MAX_GRAVITY_ATTRIBUTE_VALUE = 100;
 
-[System.Serializable]
-public class ElemantalistDamage : Damage
-{
-
+    #endregion
 }
