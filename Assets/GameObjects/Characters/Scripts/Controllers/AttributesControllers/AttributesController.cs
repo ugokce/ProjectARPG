@@ -8,38 +8,28 @@ public class AttributesController : CustomMonoBehaviour
     [SerializeField]
     protected AttributesInfoAsset attributesInfoAsset;
 
+    public TargetType TargetType { get; set; }
+
     public float Speed { get; set; }
     public float Health { get; set; }
     public float RegularDamage { get; set; }
-    public float CriticalChance { get; set; }
-    public float ArmorPiece { get; set; }
+    public float AttackSpeed { get; set; }
     public float Armor { get; set; }
-    public float Gravity {get; set; }
-    public DamageType DamageElement { get; set; }
-    public TargetType TargetType { get; set; }
+    public float Gravity { get; set; }
 
-    public virtual float TotalDamage
-    {
-        get
-        {
-            return RegularDamage + CriticalChance > Random.Range(0, 1) ? RegularDamage : ArmorPiece;
-        }
-    }
+    public DamageInfo ContactDamageInfo { get; set; }
 
     public virtual void ResetAllAttributes()
     {
         TargetType = attributesInfoAsset.targetType;
 
-        Speed = attributesInfoAsset.moveSpeed;
-        Health = attributesInfoAsset.health;
+        Speed = attributesInfoAsset.MoveSpeed.Value;
+        Health = attributesInfoAsset.Health.Value;
+        AttackSpeed = attributesInfoAsset.AttackSpeed.Value;
+        RegularDamage = attributesInfoAsset.RegularDamage.Value;
+        Armor = attributesInfoAsset.Armor.Value;
+        Gravity = attributesInfoAsset.Gravity.Value;
 
-        RegularDamage = attributesInfoAsset.damageInfo.regularDamage.value;
-        CriticalChance = attributesInfoAsset.damageInfo.criticalChance;
-        ArmorPiece = attributesInfoAsset.damageInfo.armorPiece.value;
-        DamageElement = attributesInfoAsset.damageInfo.damageType;
-
-        Armor = attributesInfoAsset.armor;
-
-        Gravity = attributesInfoAsset.gravity;
+        ContactDamageInfo = new DamageInfo(attributesInfoAsset.contactDamageInfo);
     }
 }

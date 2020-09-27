@@ -20,7 +20,7 @@ public class PlayerAttributesController : AttributesController
     {
         base.ResetAllAttributes();
 
-        JumpSpeed = playerAttributesInfoAsset.rotateSpeed;
-        RotateSpeed = playerAttributesInfoAsset.rotateSpeed;
+        JumpSpeed = playerAttributesInfoAsset.JumpSpeed.Value;
+        RotateSpeed = playerAttributesInfoAsset.RotateSpeed.Value;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : Player
@@ -14,7 +15,7 @@ public class PlayerController : Player
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        PlayerAttributesController = (PlayerAttributesController) AttributesController;
+        PlayerAttributesController = (PlayerAttributesController)AttributesController;
         AnimationController = GetComponent<PlayerAnimationController>();
     }
 
@@ -55,11 +56,6 @@ public class PlayerController : Player
         characterController.Move(playerVelocity);
     }
 
-    private void LateUpdate()
-    {
-
-    }
-
     void Attack(float movementHorizontal)
     {
         EventManager.getInstance().playerEvents.onPlayerAttack.Invoke(movementHorizontal);
@@ -86,12 +82,51 @@ public class PlayerController : Player
         EventManager.getInstance().playerEvents.onPlayerTurn.Invoke(Mathf.Lerp(animatorRotAccValue, mouseAccX, 0.1f));
     }
 
-    #region Damage
+    #region IDamage
 
-    public override void ApplyDamage(float damage, DamageType damageType)
+    public override void ApplyDamage(IList<AppliedDamageInfo> appliedDamageInfos, DamageType damageType, GameObject damageSource = null)
     {
+        if(!IsDamageable)
+        {
+            return;
+        }
 
+        base.ApplyDamage(appliedDamageInfos, damageType, damageSource);
+
+        appliedDamageInfos.DoForAll(appliedDamageInfo =>
+        {
+            // TODO: Handle status effect damages
+        });
+
+        float damageAmount = appliedDamageInfos.Sum(x => x.amount);
+
+        PlayerAttributesController.Health -= damageAmount;
+
+        if (PlayerAttributesController.Health < 1)
+        {
+            IsDamageable = false;
+            Die();
+        }
+    }
+
+    public override void AddStatus(DamageStatusType damageStatusType)
+    {
+        base.AddStatus(damageStatusType);
+
+        // TODO: Add status effect logic
+    }
+
+    public override void RemoveStatus(DamageStatusType damageStatusType)
+    {
+        base.RemoveStatus(damageStatusType);
+
+        // TODO: Remove status effect logic
     }
 
     #endregion
+
+    public override void Die()
+    {
+        base.Die();
+    }
 }
