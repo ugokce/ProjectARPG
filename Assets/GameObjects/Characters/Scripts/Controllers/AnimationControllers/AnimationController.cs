@@ -15,7 +15,7 @@ public class AnimationController : CustomMonoBehaviour
         _Animator = GetComponent<Animator>();
     }
 
-    public virtual void Attack(float movementHorizontal)
+    public virtual void Attack()
     {
         _Animator.SetTrigger(ATTACK);
         //animatorObject.SetFloat("MovementHorizontal", movementHorizontal);

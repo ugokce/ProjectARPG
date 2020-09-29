@@ -23,7 +23,7 @@ public class PlayerEvents
     //fall speed
     public EventWithFloat onPlayerGrounded;
     //attack direction
-    public EventWithFloat onPlayerAttack;
+    public UnityEvent onPlayerAttack;
     //run
     public GenericEvent<bool> onPlayerPressedShift;
 
@@ -33,7 +33,7 @@ public class PlayerEvents
         onPlayerMove = new EventWithVector3();
         onPlayerTurn = new EventWithFloat();
         onPlayerGrounded = new EventWithFloat();
-        onPlayerAttack = new EventWithFloat();
+        onPlayerAttack = new UnityEvent();
         onPlayerPressedShift = new GenericEvent<bool>();
     }
 }
