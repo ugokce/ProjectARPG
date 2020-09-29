@@ -11,6 +11,7 @@ public class PlayerController : Player
 
     public Vector3 playerVelocity;
 
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -20,7 +21,8 @@ public class PlayerController : Player
 
     void FixedUpdate()
     {
-        Move(new Vector3(Input.GetAxis("Horizontal"), 0, Mathf.Clamp(Input.GetAxis("Vertical"), -1, .5f)));
+        //TODO THESE WILL BE REMOVED
+        /*Move(new Vector3(Input.GetAxis("Horizontal"), 0, Mathf.Clamp(Input.GetAxis("Vertical"), -1, .5f)));
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -39,7 +41,7 @@ public class PlayerController : Player
 
         CalculateVerticalPosition();
 
-        Turn();
+        Turn();*/
     }
 
     private void CalculateVerticalPosition()
@@ -55,35 +57,31 @@ public class PlayerController : Player
         characterController.Move(playerVelocity);
     }
 
-    private void LateUpdate()
+    public void Attack()
     {
-
+        EventManager.getInstance().playerEvents.onPlayerAttack.Invoke();
     }
 
-    void Attack(float movementHorizontal)
-    {
-        EventManager.getInstance().playerEvents.onPlayerAttack.Invoke(movementHorizontal);
-    }
-
-    void Jump()
+    public void Jump()
     {
         EventManager.getInstance().playerEvents.onPlayerJump.Invoke();
     }
 
-    void Move(Vector3 direction)
+    public void Move(Vector3 direction)
     {
         EventManager.getInstance().playerEvents.onPlayerMove.Invoke(direction);
     }
 
-    void Turn()
+    public void Turn()
     {
-        float mouseAccX = Mathf.Clamp(Input.GetAxis("Mouse X"), -1f, 1f);
+        //TODO THIS WILL BE HANDLED BY PAWN CONTROLLER
+        /*float mouseAccX = Mathf.Clamp(Input.GetAxis("Mouse X"), -1f, 1f);
         float rotationOnY = PlayerAttributesController.RotateSpeed * mouseAccX;
 
         transform.Rotate(0, rotationOnY, 0);
 
         float animatorRotAccValue = AnimationController.GetFloat(PlayerAnimationController.ROTATION_ACC);
-        EventManager.getInstance().playerEvents.onPlayerTurn.Invoke(Mathf.Lerp(animatorRotAccValue, mouseAccX, 0.1f));
+        EventManager.getInstance().playerEvents.onPlayerTurn.Invoke(Mathf.Lerp(animatorRotAccValue, mouseAccX, 0.1f));*/
     }
 
     #region Damage
